@@ -1,0 +1,47 @@
+{
+  "name": "fsdb",
+  "version": "0.0.1",
+  "description": "Lightweight ODM database that uses JSON files",
+  "author": "Mihai Potra <mike@mpotra.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf lib/*",
+    "jslint": "eslint src",
+    "jslint:test": "eslint test",
+    "build": "npm run clean && babel -d lib src/",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm run build && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpotra/fsdb.git"
+  },
+  "keywords": [
+    "json",
+    "database",
+    "db",
+    "odm",
+    "fs",
+    "files"
+  ],
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/mpotra/fsdb/issues"
+  },
+  "homepage": "https://github.com/mpotra/fsdb#readme",
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ]
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
+    "babel-tape-runner": "^2.0.1",
+    "eslint": "^3.1.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
+  }
+}
