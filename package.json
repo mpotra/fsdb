@@ -4,7 +4,7 @@
   "description": "Lightweight ODM database that uses JSON files",
   "author": "Mihai Potra <mike@mpotra.com>",
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "clean": "rm -rf lib/*",
     "jslint": "eslint src",
