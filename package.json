@@ -5,12 +5,14 @@
   "author": "Mihai Potra <mike@mpotra.com>",
   "license": "MIT",
   "main": "lib/index.js",
+  "private": true,
   "scripts": {
     "clean": "rm -rf lib/*",
     "jslint": "eslint src",
     "jslint:test": "eslint test",
     "build": "npm run clean && babel -d lib src/",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run build",
     "prepublish": "npm run build && npm run test"
   },
   "repository": {
