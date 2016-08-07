@@ -183,9 +183,9 @@ export default class Database {
       return db._cache[name];
     }
     
-    const collection = db._cache[name] = new Collection(name);
-    
-    collection._read = () => {
+    const read = () => {
+      // TODO: implement cache control.
+      
       const whenConnected = db.connectedState.catch((e) => {
         let onConnect = () => { throw new TypeError('Early trigger'); };
         
@@ -214,6 +214,8 @@ export default class Database {
           return data;
         });
     };
+    
+    const collection = db._cache[name] = new Collection({name, read});
     
     return collection;
   }
