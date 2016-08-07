@@ -11,7 +11,8 @@
     "jslint": "eslint src",
     "jslint:test": "eslint test",
     "build": "npm run clean && babel -d lib src/",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node node_modules/.bin/babel-tape-runner test/index.js | node_modules/.bin/tap-spec",
+    "test-cov": "babel-node node_modules/.bin/babel-istanbul cover test/index.js --report html",
     "postinstall": "npm run build",
     "prepublish": "npm run build && npm run test"
   },
@@ -36,13 +37,21 @@
   "homepage": "https://github.com/mpotra/fsdb#readme",
   "babel": {
     "plugins": [
-      "transform-es2015-modules-commonjs"
+      "transform-es2015-modules-commonjs",
+      "babel-plugin-syntax-async-functions",
+      "babel-plugin-transform-async-to-generator"
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "babel-istanbul": "^0.11.0",
+    "babel-plugin-syntax-async-functions": "^6.8.0",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
     "babel-tape-runner": "^2.0.1",
     "eslint": "^3.1.1",
+    "eslint-plugin-async-await": "0.0.0",
+    "nyc": "^7.1.0-candidate2",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0"
   }
