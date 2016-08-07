@@ -1,20 +1,20 @@
 import Query from './query';
 
-const symRead = Symbol('read');
+const InternalRead = Symbol('[[read]]');
 
 export default class Collection {
   constructor({name, read, timeout = 1500} = {}) {
     if (typeof read === 'function') {
-      this[symRead] = read;
+      this[InternalRead] = read;
     }
   }
   
-  async [symRead]() {
+  async [InternalRead]() {
     throw new TypeError('Collection is not linked to a database');
   }
   
   read() {
-    return readToPromise(this[symRead]());
+    return readToPromise(this[InternalRead]());
   }
   
   find(filter, {limit, sort} = {}) {
