@@ -1,0 +1,178 @@
+[
+  {
+    "id": "linode/latest",
+    "description": "By selecting this kernel, you will always boot with the latest Linux kernel we provide.\n<br><br>\n2011-08-21 - 3.0.0-linode35\n<br>\n2011-09-01 - 3.0.4-linode36\n<br>\n2011-09-12 - 3.0.4-linode37\n<br>\n2011-09-22 - 3.0.4-linode38\n<br>\n2012-01-23 - 3.0.17-linode41\n<br>\n2012-01-30 - 3.0.18-linode43\n<br>\n2012-06-13 - 3.4.2-linode44\n<br>\n2012-08-24 - 3.5.2-linode45\n<br>\n2012-11-10 - 3.6.5-linode47\n<br>\n2013-02-27 - 3.7.10-linode49\n<br>\n2013-03-35 - 3.8.4-linode50\n<br>\n2013-05-14 - 3.9.2-x86-linode51\n<br>\n2013-05-20 - 3.9.3-x86-linode52\n<br>\n2013-10-29 - 3.11.6-x86-linode54\n<br>\n2013-12-30 - 3.12.6-x86-linode55\n<br>\n2014-02-04 - 3.12.9-x86-linode56\n<br>\n2014-03-26 - 3.13.7-x86-linode57\n<br>\n2014-04-30 - 3.14.1-x86-linode58\n<br>\n2014-05-13 - 3.14.4-x86-linode59\n<br>\n2014-06-02 - 3.14.5-x86-linode60\n<br>\n2014-06-02 - 3.14.5-x86-linode61\n<br>\n2014-07-02 - 3.15.3-x86-linode63\n<br>\n2014-07-08 - 3.15.4-x86-linode64\n<br>\n2014-11-03 - 3.17.1-x86-linode66\n<br>\n2014-11-10 - 3.16.5-x86-linode65\n<br>\n2015-06-12 - 4.0.5-x86-linode77\n<br> \n2015-06-25 - 4.1.0-x86-linode78\n<br>\n2015-08-24 - 4.1.5-x86-linode80\n",
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.1.5",
+    "x64": false,
+    "created": "2011-09-01T21:08:55",
+    "label": "Latest 32 bit (4.1.5-x86-linode80)"
+  },
+  {
+    "id": "linode/4.1.5-x86-linode80",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.1.5",
+    "x64": false,
+    "created": "2015-08-24T15:00:43",
+    "label": "4.1.5-x86-linode80"
+  },
+  {
+    "id": "linode/4.1.5-x86-linode79",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.1.5",
+    "x64": false,
+    "created": "2015-08-13T09:00:00",
+    "label": "4.1.5-x86-linode79"
+  },
+  {
+    "id": "linode/4.1.0-x86-linode78",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.1.0",
+    "x64": false,
+    "created": "2015-06-22T11:19:32",
+    "label": "4.1.0-x86-linode78"
+  },
+  {
+    "id": "linode/4.0.5-x86-linode77",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.0.5",
+    "x64": false,
+    "created": "2015-06-11T09:58:18",
+    "label": "4.0.5-x86-linode77"
+  },
+  {
+    "id": "linode/4.1.5-x86_64-linode61",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.1.5",
+    "x64": true,
+    "created": "2015-08-24T15:00:43",
+    "label": "4.1.5-x86_64-linode61"
+  },
+  {
+    "id": "linode/4.1.5-x86_64-linode60",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.1.5",
+    "x64": true,
+    "created": "2015-08-13T09:00:00",
+    "label": "4.1.5-x86_64-linode60 "
+  },
+  {
+    "id": "linode/4.1.0-x86_64-linode59",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.1.0",
+    "x64": true,
+    "created": "2015-06-22T11:19:32",
+    "label": "4.1.0-x86_64-linode59 "
+  },
+  {
+    "id": "linode/4.0.5-x86_64-linode58",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.0.5",
+    "x64": true,
+    "created": "2015-06-10T11:31:52",
+    "label": "4.0.5-x86_64-linode58"
+  },
+  {
+    "id": "linode/4.0.4-x86_64-linode57",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.0.4",
+    "x64": true,
+    "created": "2015-05-21T11:15:47",
+    "label": "4.0.4-x86_64-linode57"
+  },
+  {
+    "id": "linode/4.0.2-x86_64-linode56",
+    "description": null,
+    "deprecated": true,
+    "xen": true,
+    "kvm": true,
+    "version": "4.0.2",
+    "x64": true,
+    "created": "2015-05-11T16:56:58",
+    "label": "4.0.2-x86_64-linode56"
+  },
+  {
+    "id": "linode/latest_64",
+    "description": null,
+    "deprecated": false,
+    "xen": false,
+    "kvm": true,
+    "version": "4.0.1",
+    "x64": true,
+    "created": "2015-05-04T09:43:23",
+    "label": "4.0.1-x86_64-linode55"
+  },
+  {
+    "id": "linode/grub2",
+    "description": "Allows you to boot custom kernels and distributions using GRUB 2",
+    "deprecated": false,
+    "xen": false,
+    "kvm": true,
+    "version": "2.0.0",
+    "x64": true,
+    "created": "2015-04-29T11:32:30",
+    "label": "GRUB 2"
+  },
+  {
+    "id": "linode/direct-disk",
+    "description": "Boots the disk directly",
+    "deprecated": false,
+    "xen": false,
+    "kvm": true,
+    "version": "",
+    "x64": true,
+    "created": "2015-05-04T21:51:43",
+    "label": "Direct Disk"
+  },
+  {
+    "id": "linode/grub-legacy",
+    "description": "Allows you to boot custom kernels and distributions using GRUB Legacy",
+    "deprecated": true,
+    "xen": false,
+    "kvm": true,
+    "version": "2.0.0",
+    "x64": true,
+    "created": "2015-04-29T11:32:30",
+    "label": "GRUB (Legacy)"
+  },
+  {
+    "id": "linode/4.1.2-finnix",
+    "description": null,
+    "deprecated": false,
+    "xen": true,
+    "kvm": true,
+    "version": "4.1.2",
+    "x64": true,
+    "created": "2006-03-29T00:00:00",
+    "label": "Recovery - Finnix (kernel)"
+  }
+]
