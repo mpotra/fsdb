@@ -8,6 +8,7 @@
  */
 import fs from 'fs';
 import {sep as pathSeparator} from 'path';
+import Collection from './collection';
 
 const colNameValidator = /^[A-z0-9\-_\.]+$/igm;
 const colFilenameValidator = /^[A-z0-9\-\.]+\.json$/igm;
@@ -32,91 +33,6 @@ const readFile = (path, options = {}) => new Promise(function(resolve, reject) {
     }
   });
 });
-
-export class Query {
-  constructor(promise) {
-    this.then = (...args) => new Query(promise.then(...args));
-    this.catch = (...args) => new Query(promise.catch(...args));
-  }
-  
-  limit(...args) {
-    if (args.length >= 2) {
-      return this.then((docs) => (docs.length > 0 ? docs.slice(...args) : []));
-    } else if (args.length === 1) {
-      return this.then((docs) => (docs.length > 0 ? docs.slice(0, args[0]) : []));
-    } else {
-      return this;
-    }
-  }
-  
-  filter(search = {}) {
-    const searchType = typeof search;
-    
-    if (searchType !== 'undefined' && searchType !== null) {
-      let fnSearch;
-      
-      if (searchType === 'object') {
-        const sKeys = Object.getOwnPropertyNames(search);
-        
-        fnSearch = (doc) => {
-          for (const key of sKeys) {
-            if (doc[key] !== search[key]) {
-              return false;
-            }
-          }
-          
-          return true;
-        };
-      } else {
-        fnSearch = (doc) => (doc === search);
-      }
-      
-      return this.then((docs) => (docs.length > 0 ? docs.filter(fnSearch) : docs));
-    } else {
-      return this;
-    }
-  }
-}
-
-export class Collection {
-  constructor(name, {database = null, timeout = 1500} = {}) {
-    this._name = name;
-    this._database = database;
-    this._timeout = timeout;
-  }
-  
-  _read() {
-    return Promise.reject(new TypeError('Collection is not linked to a database'));
-  }
-  
-  read() {
-    return (Array.isArray(this.docs) ? Promise.resolve(this.docs) : this._read().then((d) => this.docs = d));
-  }
-  
-  find(filter, {limit, sort} = {}) {
-    // TODO: implement filter, limit, sort
-    let query = new Query(this.read());
-    
-    if (typeof filter !== undefined && filter !== null) {
-      query = query.filter(filter);
-    }
-    
-    if (limit) {
-      query = query.limit(limit);
-    }
-    
-    if (sort) {
-      query = query.sort(sort);
-    }
-    
-    
-    return query;
-  }
-  
-  findOne(filter, {sort} = {}) {
-    return this.find(filter, {sort}).limit(1).then((results) => (results.length > 0 ? results[0] : []));
-  }
-}
 
 function createFSEventHandler(db) {
   return function onchange(event, filename) {
@@ -150,10 +66,10 @@ function isFunction(fn) {
 
 function triggerDatabaseOnConnect(db) {
   db._queueOnConnect
-        // First pass: retrieve only functions from the queue.
-        .filter(isFunction)
-        // Execute each function.
-        .forEach((fn) => fn());
+    // First pass: retrieve only functions from the queue.
+    .filter(isFunction)
+    // Execute each function.
+    .forEach((fn) => fn());
   
   // Return. Last pass: eliminate any one-time functions.
   return db._queueOnConnect.filter(isFunction);
@@ -288,14 +204,15 @@ export default class Database {
       });
       
       
-      return whenConnected.then(() => readFile(`${db.path}${name}.json`))
-                          .then((data) => JSON.parse(data.toString()))
-                          .then((data) => {
-                            if (!Array.isArray(data)) {
-                              throw new TypeError('Collection data is corrupt: expected Array');
-                            }
-                            return data;
-                          });
+      return whenConnected
+        .then(() => readFile(`${db.path}${name}.json`))
+        .then((data) => JSON.parse(data.toString()))
+        .then((data) => {
+          if (!Array.isArray(data)) {
+            throw new TypeError('Collection data is corrupt: expected Array');
+          }
+          return data;
+        });
     };
     
     return collection;
