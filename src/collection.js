@@ -36,7 +36,7 @@ export default class Collection {
     
     if (limit) {
       query = query.limit(limit);
-    }    
+    }
     
     return query;
   }

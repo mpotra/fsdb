@@ -36,7 +36,7 @@ export default class Query {
         const sKeys = Object.getOwnPropertyNames(search);
         
         if (sKeys.length === 0) {
-          /* For no properties in the `search` object, 
+          /* For no properties in the `search` object,
            * skip calling the expensive `Array.prototype.filter` method,
            * and return the current results.
            */
@@ -105,7 +105,7 @@ export default class Query {
   
   /**
    * TODO: Sort results based on a function.
-   * 
+   *
    * @param {Function} fn Sort function. See `Array.prototype.sort` for sorting function arguments.
    * @return {Query} A Query instance.
    */
