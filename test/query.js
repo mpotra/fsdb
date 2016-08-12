@@ -1,26 +1,17 @@
-import Query from '../src/query';
 import {test} from './lib/tape';
 import testProto from './util/test_proto';
-
-function isQuery(o) {
-  if (!(o instanceof Query)) {
-    throw new TypeError('Not a Query instance');
-  }
-}
-
-const proto = Query.prototype;
-const methods = ['catch', 'constructor', 'filter', 'limit', 'sort', 'then'];
+import {Query, isQuery, proto, methods} from './lib/query';
 
 const result1 = [];
 const result2 = [1, 2, 3];
 const result3 = [{value: 1, type: 'obj'}, {value: 2, type: 'obj'}, {value: 3, type: 'obj'}];
-const result4 = new TypeError('Failed #1');
+//const result4 = new TypeError('Failed #1');
 const result5 = result3.concat([undefined, {value: 4, type: 'other'}, null, undefined]);
 
 const p1 = Promise.resolve(result1);
 const p2 = Promise.resolve(result2);
 const p3 = Promise.resolve(result3);
-const p4 = Promise.reject(result4);
+//const p4 = Promise.reject(result4);
 const p5 = Promise.resolve(result5);
 
 
