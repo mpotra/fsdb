@@ -1,20 +1,24 @@
+import assert from 'assert';
 import Query from './query';
+import {throwIfNotArray} from './util';
 
-const InternalRead = Symbol('[[read]]');
+const InternalReadSymbol = Symbol('[[read]]');
 
 export default class Collection {
   constructor({name, read, timeout = 1500} = {}) {
-    if (typeof read === 'function') {
-      this[InternalRead] = read;
-    }
+    SetInternalRead(this, read);
   }
   
-  async [InternalRead]() {
-    throw new TypeError('Collection is not linked to a database');
+  [InternalReadSymbol]() {
+    throw new ReferenceError('Collection is not linked to a database');
   }
   
   read() {
-    return readToPromise(this[InternalRead]());
+    /**
+     * Ensure that the returned value of this[[read]] is a Promise
+     * that rejects if the result is not an Array.
+     */
+    return CallInternalRead(this).then(throwIfNotArray);
   }
   
   find(filter, {limit, sort} = {}) {
@@ -38,24 +42,27 @@ export default class Collection {
   }
   
   findOne(filter, {sort} = {}) {
-    return this.find(filter, {sort}).limit(1).then((results) => {
-      return (results.length > 0 ? results[0] : null);
+    const _findOne = this.find(filter, {sort}).limit(1).then((results) => {
+      // If empty array, return `undefined`, otherwise the first item in the array.
+      return (results.length > 0 ? results[0] : undefined);
     });
+
+    return new Query(_findOne);
   }
 }
 
-function throwIfNotArray(arr) {
-  if (false === Array.isArray(arr)) {
-    throw new TypeError('Invalid collection data');
+function SetInternalRead(collection, fn) {
+  if (typeof fn === 'function') {
+    collection[InternalReadSymbol] = fn;
+  } else if (typeof fn !== 'undefined') {
+    throw new TypeError('Function expected in assigning to Collection[[read]] member');
   }
-  
-  return arr;
 }
 
-function readToPromise(result) {
-  if (typeof result !== 'object' || result === null || typeof result['then'] !== 'function') {
-    result = Promise.resolve(result);
-  }
+async function CallInternalRead(collection) {
+  const fn = collection[InternalReadSymbol];
   
-  return result.then(throwIfNotArray);
+  assert.equal(typeof fn, 'function', 'Invalid overwritten Collection[[read]] method');
+  
+  return fn.call(collection);
 }
