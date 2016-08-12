@@ -1,2 +1,2 @@
-//import './query';
+import './query';
 import './collection';
