@@ -13,7 +13,7 @@ test.Test.prototype.resolves = function(promise, ...args) {
   return Promise.resolve().then(() => {
     promise.then(function(val) {
       if (args.length >= 2) {
-        self.equal(val, ...args);
+        self.looseEqual(val, ...args);
       } else {
         self.pass(...args);
       }
